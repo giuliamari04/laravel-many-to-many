@@ -14,7 +14,7 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $categories = ['Casa', 'Cucina', 'Ufficio', 'Giochi', 'Notizie'];
+        $categories = ['frontend', 'backend', 'fullstack'];
         foreach ($categories as $value) {
             $newCategory = new Category();
             $newCategory->name = $value;
