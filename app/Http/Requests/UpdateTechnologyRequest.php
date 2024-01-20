@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class StoreCategoryRequest extends FormRequest
+class UpdateTechnologyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,16 +23,15 @@ class StoreCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'min:3', 'max:200', 'unique:categories'],
+            'name' => ['required', 'min:3', 'max:200', Rule::unique('technologies')->ignore($this->technology)],
         ];
     }
-
     public function messages()
     {
         return [
             'name.required' => 'Il nome è obbligatorio',
-            'name.min' => 'Il titolo deve avere almeno :min caratteri',
-            'name.max' => 'Il titolo deve avere massimo :max caratteri',
+            'name.min' => 'Il nome deve avere almeno :min caratteri',
+            'name.max' => 'Il nome deve avere massimo :max caratteri',
             'name.unique' => 'Questo nome esiste già'
 
         ];
